@@ -1,0 +1,49 @@
+.FilterLeadContainer{
+    padding: 20px;
+    .groupButton {
+        height: 160px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #F2F7F9 100%);
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+    }
+    .btnClose{
+        height: 60px;
+        width: 60px;
+        background-color: #00476F;
+        border-radius: 30px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+    .btnAction{
+        height: 60px;
+        border-radius: 30px;
+        justify-content: center;
+        align-items: center;
+        background-color: #F26522; 
+        display: flex;
+        padding: 0px 14px;
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+    .txtLabelBtn{
+        color:white;
+        font-family: 'Google Sans';
+        font-size: 14px;
+        margin-left: 5px;
+    }
+    .labelSelected{
+        font-family: 'Google Sans';
+        font-size: 14px;
+        color: #597393;
+        margin: 5px 0;
+        margin-top: 10px;
+    }
+}

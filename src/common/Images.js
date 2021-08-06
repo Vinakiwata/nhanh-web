@@ -1,8 +1,31 @@
 import icClose from '../images/ic_close_white.png'
 import icAddUser from '../images/ic_add_user_white.png'
+import icListBlue from '../images/ic_list_blue.png'
+import icCheckboxOrange from '../images/ic_checkbox_orange.png'
+import icCheckboxFlightBlue from '../images/ic_checkbox_blue_flight.png'
+import icPointerRightWhite from '../images/ic_pointer_right_white.png'
+import icPolicyOrange from '../images/ic_policy_orange.png'
+import icPolicyFlightBlue from '../images/ic_policy_blue_flight.png'
+import icVerifyUserOrange from '../images/ic_verify_user_orange.png'
+import icVerifyUserFlightBlue from '../images/ic_verify_user_blue_flight.png'
+import icFilterOrange from '../images/ic_filter_orange.png'
+import icNoneFilterBlue from '../images/ic_none_filter_blue.png'
+import icUpArrowBlue from '../images/ic_up_arrow_blue.png'
+import icDownArrowBlue from '../images/ic_down_arrow_blue.png'
+
 const Images = {
     icClose,
-    icAddUser
+    icAddUser,
+    icListBlue,
+    icCheckboxOrange,
+    icPointerRightWhite,
+    icPolicyOrange,
+    icVerifyUserOrange,
+    icCheckboxFlightBlue,
+    icPolicyFlightBlue,
+    icVerifyUserFlightBlue,
+    icFilterOrange,
+    icNoneFilterBlue
 }
 
 export default Images;

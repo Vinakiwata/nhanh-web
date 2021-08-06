@@ -9,6 +9,7 @@ import AddLeadScreen from '../containers/AddLead/index'
 import SplashScreen from '../containers/SplashScreen'
 import LoadingScreen from '../containers/LoadingScreen'
 import ManagerLeadScreen from '../containers/ManagerLead/index'
+import FilterLeadScreen from '../containers/FilterLead'
 
 
 class RootRouter extends Component {
@@ -28,6 +29,9 @@ class RootRouter extends Component {
             </Route>
             <Route exact path="/manager-lead">
                 <ManagerLeadScreen/>
+            </Route>
+            <Route exact path="/filter-lead">
+                <FilterLeadScreen/>
             </Route>
             <Route exact path="/loading">
                 <LoadingScreen/>

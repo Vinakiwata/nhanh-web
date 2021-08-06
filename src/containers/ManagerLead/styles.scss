@@ -1,0 +1,49 @@
+.managerContainer{
+    height: 100vh;
+    flex-direction: column;
+    display: flex;
+    .txtStatistic{
+        font-family: 'Google Sans';
+        font-size: 14px;
+        font-weight: bold;
+        color: #597393;
+        padding: 10px 20px;
+    }
+    .pageTab{
+        flex: 1;
+        background-color: #DDEAF3;
+        // border-radius: 30px;
+        margin-top: 40px;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+    }
+    .groupButton {
+        height: 160px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #F2F7F9 100%);
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+    }
+    .btnFilter{
+        display: flex;
+        border-color: transparent;
+        background-color: transparent;
+        justify-content: center;
+        align-items: center;
+    }
+    .txtFilter{
+        font-family: 'Google Sans Medium';
+        font-size: 14px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: #00476F;
+        margin-left: 4px;
+    }
+}
