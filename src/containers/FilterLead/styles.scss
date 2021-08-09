@@ -46,4 +46,42 @@
         margin: 5px 0;
         margin-top: 10px;
     }
+    .groupTitleFilter{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 10px 5px 18px;
+        min-height: 40px;
+        width: -webkit-fill-available;
+        border-color: transparent;
+        background-color: transparent;
+    }
+    .groupSelector{
+        background-color: #DDEAF3;
+        border-radius: 15px;
+    }
+    .titleFilter{
+        font-family: 'Google Sans';
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        color: #F26522;
+    }
+    .listFilter{
+        display: flex;
+        flex-direction: column;
+    }
+    .btnFilter{
+        border-color: transparent;
+        background-color: transparent;
+        font-family: 'Google Sans';
+        font-size: 18px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        color: #00476F;
+    }
 }

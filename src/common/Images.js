@@ -25,7 +25,9 @@ const Images = {
     icPolicyFlightBlue,
     icVerifyUserFlightBlue,
     icFilterOrange,
-    icNoneFilterBlue
+    icNoneFilterBlue,
+    icUpArrowBlue,
+    icDownArrowBlue
 }
 
 export default Images;

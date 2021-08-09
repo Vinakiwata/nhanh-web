@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './styles.scss'
 import EnhancedInput from '../../components/InputEnhanced'
-import Image from '../../common/Images'
+import Images from '../../common/Images'
 
 let dataOption = [
     {label: 'NVPTTT/NVXL', value: 0},
@@ -20,7 +20,22 @@ const FilterLead = () => {
         return (
             <div>
                 <div className="labelSelected">Nguồn</div>
-
+                <div className="groupSelector">
+                    <button onClick={()=>handleSlected()} className="groupTitleFilter">
+                        <div className="titleFilter">Tất cả</div>
+                        <img src={Images.icDownArrowBlue}/>
+                    </button>
+                    <div>
+                        {
+                            openOption&&
+                            <div className="listFilter">
+                                {dataOption.map((item, index) =>
+                                <button className="btnFilter" key={index}>{item?.label}</button>)}
+                                
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
         )
     }
@@ -31,7 +46,7 @@ const FilterLead = () => {
         {selectOption()}
         <div className="groupButton">
             <button type="button" className="btnClose">
-            <img src={Image.icClose} alt=""/>
+            <img src={Images.icClose} alt=""/>
             </button>
             <button type="button" className="btnAction">
                 <div className="txtLabelBtn">XOÁ HẾT</div>
