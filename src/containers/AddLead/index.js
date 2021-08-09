@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './styles.scss'
 import EnhancedInput from '../../components/InputEnhanced'
 import Image from '../../common/Images'
-const AddLead = () => {
+
+const AddLead = (props) => {
+    const {token} = props;
     return (<div className="addLeadContainer">
         <div className="titlePage">THÔNG TIN KHÁCH HÀNG</div>
         <EnhancedInput label="Số điện thoại" placeholder="Số điện thoại bàn hoặc di động"/>
@@ -24,4 +27,19 @@ const AddLead = () => {
     </div>)
 }
 
-export default AddLead;
+const mapStateToProps = (state) => {
+    return {
+        token: state.auth.token
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // getUserInfo: (token) => dispatch(getUserInfo(token)),
+        // setVarAuth: (key, value) => dispatch(setVarAuth(key, value))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (AddLead)
+// export default AddLead;

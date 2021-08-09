@@ -6,11 +6,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import configureStore from './redux/store/index'
 import RootReducer from './route/RootRouter'
+import { createBrowserHistory } from "history";
+
+const customHistory = createBrowserHistory();
 
 const store = configureStore()
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store}  history={customHistory}>
     <React.StrictMode>
       <RootReducer />
     </React.StrictMode>

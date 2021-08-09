@@ -1,67 +1,70 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import './styles.scss';
 import GHNAPI from './../../services/GHNAPI' 
 import Constants from './../../common/Constants'
+import { connect } from 'react-redux';
+import {getUserInfo, setVarAuth} from '../../redux/actions/authAction'
+import { useHistory } from "react-router-dom";
 
-class SplashScreen extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            isSuccess: true,
-            session:''
+const  SplashScreen = (props) => {
+    let history = useHistory();
+    useEffect(()=>{
+        handleLogin()
+    },[])
+    const handleLogin = async() => {
+        const authorCode = getParamUrl(window.location.href).authorcode
+        if(authorCode) {
+            const res = await GHNAPI.login(authorCode)
+            const response = res?.data
+            if(response?.status === 'OK'){
+                const data = response.data
+                if(data[0]?.access_token){
+                    const {setVarAuth, getUserInfo} = props;
+                    let token = data[0].access_token;
+                    setVarAuth('token',token);
+                    getUserInfo(token);
+                    history.push("/");
+                }
+                else {
+                    window.location.href = Constants.GHN.AUTHEN_URL
+                }
+            } else {
+                window.location.href = Constants.GHN.AUTHEN_URL
+            }
+
+        } else {
+            window.location.href = Constants.GHN.AUTHEN_URL
         }
     }
-    render(){
-        return (
-        <div className="App splash">
-            Hello Hello
-        </div>
-        );
+
+  const getParamUrl = (url)=>{
+        let vars = {}
+        url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+            vars[key] = value
+        })
+        return vars
     }
+    return (
+    <div className="App splash">
+        Loading ...
+    </div>
+    );
 
-    onLogout = async() => {
-        // const {session} = this.state
-        // await GHNAPI.logout(session)
-        localStorage.clear();
-        window.location.href = Constants.GHN.AUTHEN_URL
-    }
-
-  async componentDidMount(){
-    const authorCode = this.getParamUrl(window.location.href).authorcode
-    if(authorCode) {
-        console.log(222222,authorCode)
-        const res = await GHNAPI.login(authorCode)
-        console.log(111111,res)
-        // const response = res?.data
-        // if(response?.status === 'OK'){
-        //     const data = response.data
-        //     const userInfo = data[0].userInfo
-        //     if(userInfo){
-        //         const session = data[0].session
-        //         localStorage.setItem("session", session)
-        //         window.location.href="/"
-        //     } else {
-        //         window.location.href = Constants.GHN.AUTHEN_URL
-        //     }
-        // } else {
-        //     window.location.href = Constants.GHN.AUTHEN_URL
-        // }
-
-    } else {
-        console.log("here")
-        window.location.href = Constants.GHN.AUTHEN_URL
-    }
-
-  }
-
-  getParamUrl(url){
-    let vars = {}
-    url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-        vars[key] = value
-    })
-    return vars
-}
 
 }
 
-export default SplashScreen;
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUserInfo: (token) => dispatch(getUserInfo(token)),
+        setVarAuth: (key, value) => dispatch(setVarAuth(key, value))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (SplashScreen)
