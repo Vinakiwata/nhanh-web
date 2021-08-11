@@ -1,33 +1,16 @@
 import React from 'react';
 import './styles.scss'
-// Restricts input for the given textbox to the given inputFilter.
-// function setInputFilter(textbox, inputFilter) {
-//     ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
-//       textbox.addEventListener(event, function() {
-//         if (inputFilter(this.value)) {
-//           this.oldValue = this.value;
-//           this.oldSelectionStart = this.selectionStart;
-//           this.oldSelectionEnd = this.selectionEnd;
-//         } else if (this.hasOwnProperty("oldValue")) {
-//           this.value = this.oldValue;
-//           this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-//         } else {
-//           this.value = "";
-//         }
-//       });
-//     });
-//   }
-const InputEnhanced = ({label, value, type, placeholder, onChange}) => {
+const InputEnhanced = ({name,label, value, type, maxLength, placeholder, onChange, error}) => {
     const handleChange = (e)=>{
-        onChange(e.target.value)
+        onChange(e.target.name,e.target.value)
     }
     return (
         <div className="inputEnhancedContainer">
             <div className="labelInput">{label}</div>
             <div style={{height:40}}>
-                <input value={value} onChange={handleChange} type={type} className="styleInput"  placeholder={placeholder}/>
+                <input maxLength={maxLength} name={name} value={value} onChange={handleChange} type={type} className={error?"styleInput2":"styleInput"}  placeholder={placeholder}/>
             </div>
-            
+            {error&&<div className="messageError">{error}</div>}
         </div>
     )
 }
@@ -37,7 +20,10 @@ InputEnhanced.defaultProps = {
     value: '',
     type: 'text',
     placeholder: 'Vui lòng nhập',
-    onChange: ()=>{}
+    error: '',
+    name:'input',
+    onChange: ()=>{},
+    maxLength: '500',
 }
 
 export default InputEnhanced;

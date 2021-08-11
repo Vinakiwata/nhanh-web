@@ -6,17 +6,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import configureStore from './redux/store/index'
 import RootReducer from './route/RootRouter'
-import { createBrowserHistory } from "history";
+import { PersistGate } from 'redux-persist/integration/react'
 
-const customHistory = createBrowserHistory();
-
-const store = configureStore()
+const {store,persistor} = configureStore()
 
 ReactDOM.render(
-  <Provider store={store}  history={customHistory}>
-    <React.StrictMode>
-      <RootReducer />
-    </React.StrictMode>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <React.StrictMode>
+        <RootReducer />
+      </React.StrictMode>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

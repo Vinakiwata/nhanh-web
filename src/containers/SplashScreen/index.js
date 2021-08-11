@@ -1,6 +1,6 @@
 import React, {Component, useEffect} from 'react';
 import './styles.scss';
-import GHNAPI from './../../services/GHNAPI' 
+import AuthApi from '../../redux/api/AuthenticationApi'
 import Constants from './../../common/Constants'
 import { connect } from 'react-redux';
 import {getUserInfo, setVarAuth} from '../../redux/actions/authAction'
@@ -14,7 +14,7 @@ const  SplashScreen = (props) => {
     const handleLogin = async() => {
         const authorCode = getParamUrl(window.location.href).authorcode
         if(authorCode) {
-            const res = await GHNAPI.login(authorCode)
+            const res = await AuthApi.loginApi(authorCode)
             const response = res?.data
             if(response?.status === 'OK'){
                 const data = response.data
