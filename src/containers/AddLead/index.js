@@ -6,15 +6,25 @@ import Image from '../../common/Images'
 import _ from 'lodash'
 import {checkPhoneValid,validateEmail} from '../../utils/CheckValid'
 import CreateLeadApi from '../../redux/api/CreateLeadApi'
+import { ToastContainer, toast } from 'react-toastify';
 
 let userInfoDefault = {
     phone: '',
     shopName: '',
     email: '',
     address: '',
-    quantityPerMonth: '',
-    revenuePerMonth: '',
+    quantity: '',
+    revenue: '',
     note: ''
+}
+const toastOption = {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
 }
 const AddLead = (props) => {
     const {token} = props;
@@ -32,6 +42,8 @@ const AddLead = (props) => {
         
         handleCheckValid(name,value)
     }
+    const showToastError = (label) => toast.error(label, toastOption);
+    const showToastSuccess = (label) => toast.success(label, toastOption);
     const handleCheckValid = (name, value) => {
         let errorMessage = error;
         switch (name) {
@@ -39,7 +51,7 @@ const AddLead = (props) => {
                 let phoneValid = checkPhoneValid(value)
                 errorMessage.phone = phoneValid;
                 if(!phoneValid&&(value?.length<11)){
-                    handleCheckPhone()
+                    handleCheckPhone(value)
                 }
                 break;
             case 'shopName':
@@ -51,8 +63,8 @@ const AddLead = (props) => {
             case 'address':
                 errorMessage.address = value? '': 'Địa chỉ không được để trống';
                 break;
-            case 'quantityPerMonth':
-                errorMessage.quantityPerMonth = value? '': 'Sản lượng dự kiến không được để trống';
+            case 'quantity':
+                errorMessage.quantity = value? '': 'Sản lượng dự kiến không được để trống';
                 break;
             default:
                 break;
@@ -65,35 +77,42 @@ const AddLead = (props) => {
         errorMessage.email = error?.email;
         errorMessage.shopName = (!addInfo?.shopName) ? 'Tên shop không được để trống':'';
         errorMessage.address = (!addInfo?.address) ? 'Địa chỉ không được để trống':'';
-        errorMessage.quantityPerMonth = (!addInfo?.quantityPerMonth) ? 'Sản lượng dự kiến không được để trống':'';
+        errorMessage.quantity = (!addInfo?.quantity) ? 'Sản lượng dự kiến không được để trống':'';
         return errorMessage
     }
     const handleAddLead = () => {
         let validSubmit = checkValidToSubmit();
-        if(!_.isEmpty(validSubmit)){
+        if(!_.isEmpty(Object.values(validSubmit).filter(o=>o))){
             setError(validSubmit)
         }
         else{
+            console.log("tao")
+            CreateLeadApi.createLead(token,addInfo?.phone,addInfo?.shopName, addInfo?.address, addInfo?.email,addInfo?.quantity,addInfo?.revenue,addInfo?.note,
+                result=>{
+                    showToastSuccess("Tạo khách hàng thành công")
+                    clearAllInput();
+                },
+                err=>{
+                    showToastError(err)
+                })
         }
         
     }
 
-    const handleCheckPhone = () => {
-        console.log(12123,addInfo?.phone)
-        CreateLeadApi.checkPhone(token,addInfo?.phone, result=>{
+    const clearAllInput = () => {
+        setAddInfo({...userInfoDefault})
+    }
+
+    const handleCheckPhone = (phone) => {
+        CreateLeadApi.checkPhone(token,phone, result=>{
             console.log(333,result)
             if(result.status==='not_existed_lead'){
-                console.log("ok")
-                // return '';
                 setError({...error,phone:''})
             }
             else {
-                // return 'Số điện thoại này đã được đăng kí';
                 setError({...error,phone:'Số điện thoại này đã được đăng kí'})
             }
         },err=>{
-            console.log("3333333")
-            // return 'số điện thoại không hợp lệ';
             setError({...error,phone:'số điện thoại không hợp lệ'})
         })
     }
@@ -103,11 +122,11 @@ const AddLead = (props) => {
         <EnhancedInput name = "shopName" error={error?.shopName} value={addInfo?.shopName} onChange={handleInput} label="Tên Shop/Công ty" placeholder="Tên shop/Công ty"/>
         <EnhancedInput name = "address" error={error?.address} value={addInfo?.address} onChange={handleInput} label="Địa chỉ" placeholder="Nhập đúng format để dễ dàng thống kê tìm kiếm"/>
         <EnhancedInput name = "email" error={error?.email} value={addInfo?.email} onChange={handleInput} label="Email" placeholder="Cá nhân hoặc cty đều được"/>
-        <EnhancedInput name = "quantityPerMonth" error={error?.quantityPerMonth} value={addInfo?.quantityPerMonth} onChange={handleInput} label="Sản lượng dự kiến (Đơn/Tháng)" placeholder="Số đơn"/>
-        <EnhancedInput name = "revenuePerMonth" value={addInfo?.revenuePerMonth} onChange={handleInput} label="Doanh thu dự kiến (Vnđ/Tháng)" placeholder="Nhập số tiền"/>
+        <EnhancedInput name = "quantity" error={error?.quantity} value={addInfo?.quantity} onChange={handleInput} label="Sản lượng dự kiến (Đơn/Tháng)" placeholder="Số đơn" type="number"/>
+        <EnhancedInput name = "revenue" value={addInfo?.revenue} onChange={handleInput} label="Doanh thu dự kiến (Vnđ/Tháng)" placeholder="Nhập số tiền" type="number"/>
         <EnhancedInput name = "note" value={addInfo?.note} onChange={handleInput} label="Ghi chú thêm" placeholder="Nhập ghi chú"/>
         <div className="groupButton">
-            <button type="button" className="btnClose">
+            <button type="button" onClick={clearAllInput} className="btnClose">
             <img src={Image.icClose} alt=""/>
             </button>
             <button type="button" className="btnAdd" onClick={handleAddLead}>
@@ -115,6 +134,7 @@ const AddLead = (props) => {
                 <div className="txtLabelBtn">THÊM LEAD MỚI</div>
             </button>
         </div>
+        <ToastContainer/>
     </div>)
 }
 
@@ -127,10 +147,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // getUserInfo: (token) => dispatch(getUserInfo(token)),
-        // setVarAuth: (key, value) => dispatch(setVarAuth(key, value))
     }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (AddLead)
-// export default AddLead;
