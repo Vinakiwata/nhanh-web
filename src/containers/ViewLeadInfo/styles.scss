@@ -1,0 +1,182 @@
+.ViewLeadInfoContainer{
+    padding: 14px 10px;
+    .customerId{
+        font-family: 'Google Sans';
+        font-size: 18px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        color: #F26522;
+    }
+    .groupStateUser{
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+    }
+    .groupCheckInfo{
+        display: flex;
+        flex-direction: row;
+        border: 1px solid #F26522;
+        border-radius: 33px;
+        padding: 4px 7px;
+        align-items: center;
+    }
+    .txtCheckInfo{
+        font-family: 'Google Sans';
+        font-size: 12px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        color: #F26522;
+        margin-left: 7px;
+    }
+    .groupViewProcess{
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .txtWiewProcess{
+        font-family: 'Google Sans';
+        font-size: 12px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        color: #00476F;
+        margin-right: 7px;
+    }
+    .txtInfoGeneral{
+        font-family: 'Google Sans';
+        font-size: 18px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        color: #00476F;
+        margin-top: 10px;
+    }
+    .borderView {
+        display: flex;
+        flex-direction: row;
+        background-color: #F2F7F9;
+        padding: 7px 10px;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 15px;
+        margin-top: 4px;
+        border-color: transparent;
+    }
+    .txtLabelText{
+        font-family: Google Sans;
+        font-size: 14px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        color: #00476F;
+    }
+    .txtInfoText{
+        font-family: Google Sans;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        color: #00476F;
+    }
+    .groupPercentCommit{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .txtIncreasePercent {
+        font-family: Google Sans;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        color: #22BB3E;
+        margin-left: 2px;
+        margin-right: 10px;
+    }
+    .borderText {
+        border-radius: 33px;
+        background-color: #F26522;
+        padding: 3px 5px;
+        max-width: 200px;
+        margin-left: 4px;
+    }
+    .txtInfoText2 {
+        font-family: Roboto;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        color: #F2F7F9;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+    }
+    .groupOption{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .txtNote{
+        font-family: Google Sans;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        color: #00476F;
+        flex:1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        margin-left: 5px;
+    }
+    .groupNote{
+        background: #F2F7F9;
+        border-radius: 15px;
+    }
+    .txtNote{
+        font-family: Google Sans;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 138.19%;
+        color: #00476F;
+    }
+    .groupButton {
+        height: 160px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #F2F7F9 100%);
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+    }
+    .btnClose{
+        height: 60px;
+        width: 60px;
+        background-color: #00476F;
+        border-radius: 30px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+    .groupLocation{
+        height: 80px;
+        background: linear-gradient(90deg, #597393 48.95%, rgba(196, 196, 196, 0) 97.96%);
+    }
+}

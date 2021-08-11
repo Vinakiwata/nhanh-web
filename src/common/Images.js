@@ -12,6 +12,12 @@ import icFilterOrange from '../images/ic_filter_orange.png'
 import icNoneFilterBlue from '../images/ic_none_filter_blue.png'
 import icUpArrowBlue from '../images/ic_up_arrow_blue.png'
 import icDownArrowBlue from '../images/ic_down_arrow_blue.png'
+import icViewLogBlue from '../images/ic_view_log_blue.png'
+import icViewLogOrange from '../images/ic_view_log_orange.png'
+import icPenCilBlue from '../images/ic_pencil_blue.png'
+import icIncreaseGreen from '../images/ic_increase_green.png'
+import icCoinInfoBlue from '../images/ic_coin_info_blue.png'
+import icDoubleDownOrange from '../images/ic_double_down_orange.png'
 
 const Images = {
     icClose,
@@ -27,7 +33,13 @@ const Images = {
     icFilterOrange,
     icNoneFilterBlue,
     icUpArrowBlue,
-    icDownArrowBlue
+    icDownArrowBlue,
+    icViewLogBlue,
+    icViewLogOrange,
+    icPenCilBlue,
+    icIncreaseGreen,
+    icCoinInfoBlue,
+    icDoubleDownOrange
 }
 
 export default Images;
