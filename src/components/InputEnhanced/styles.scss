@@ -1,4 +1,9 @@
 .inputEnhancedContainer{
+    .groupInput{
+        background-color: #DDEAF3;
+        border-radius: 15px;
+        align-items: center;
+    }
     .styleInput{
         background-color: #DDEAF3;
         border-radius: 15px;
@@ -10,6 +15,30 @@
         color: #597393;
         border-color: transparent;
     }
+    .iconEdit{
+        position: absolute;
+        right: 20px;
+    }
+    .styleInput::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:    #597393;
+    }
+    .styleInput:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color:    #597393;
+        opacity:  1;
+     }
+    .styleInput::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color:  #597393;
+        opacity:  1;
+     }
+    .styleInput:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color:    #597393;
+     }
+    .styleInput::-ms-input-placeholder { /* Microsoft Edge */
+        color:    #597393;
+     }
+    .styleInput::placeholder { /* Most modern browsers support this now. */
+        color:    #597393;
+     }
     .styleInput2{
         background-color: #DDEAF3;
         border-radius: 15px;

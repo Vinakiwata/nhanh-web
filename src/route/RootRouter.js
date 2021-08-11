@@ -11,6 +11,7 @@ import LoadingScreen from '../containers/LoadingScreen'
 import ManagerLeadScreen from '../containers/ManagerLead/index'
 import FilterLeadScreen from '../containers/FilterLead'
 import ViewLeadInfo from '../containers/ViewLeadInfo'
+import EditLeadInfo from '../containers/EditLeadInfo'
 
 class RootRouter extends Component {
 
@@ -35,6 +36,9 @@ class RootRouter extends Component {
             </Route>
             <Route path="/lead-info">
                 <ViewLeadInfo/>
+            </Route>
+            <Route path="/edit-lead">
+                <EditLeadInfo/>
             </Route>
             <Route path="/loading">
                 <LoadingScreen/>
