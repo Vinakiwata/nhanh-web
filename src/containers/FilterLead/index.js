@@ -25,6 +25,9 @@ const FilterLead = (props) => {
     const {setVarLead, dataFilter} = props;
     const [openOption, setOpenOption] = useState(false);
     const [listFilter,setListFilter] = useState(dataFilterTempt)
+    const goBack = ()=> {
+        history.goBack()
+    }
     const handleShowSlected = () => {
         setOpenOption(!openOption)
     }
@@ -40,6 +43,7 @@ const FilterLead = (props) => {
         if(!value){
             setListFilter({...dataFilterTempt})
         }
+        goBack()
     }
     const selectOption = () => {
         return (
@@ -70,7 +74,7 @@ const FilterLead = (props) => {
         <EnhancedInput name="affID" value={listFilter?.affID} onChange={handleSetInput} label="AFF ID"  placeholder="Nhập giá trị" type="number"/>
         {selectOption()}
         <div className="groupButton">
-            <button onClick={()=>history.goBack()} type="button" className="btnClose">
+            <button onClick={goBack} type="button" className="btnClose">
             <img src={Images.icClose} alt=""/>
             </button>
             <button type="button" onClick={()=>handleSetFilter(null)} className="btnAction">
@@ -84,7 +88,6 @@ const FilterLead = (props) => {
     )
 }
 
-// export default FilterLead;
 const mapStateToProps = (state) => {
     return {
         token: state.auth.token,

@@ -7,6 +7,7 @@ import _ from 'lodash'
 import {checkPhoneValid,validateEmail} from '../../utils/CheckValid'
 import CreateLeadApi from '../../redux/api/CreateLeadApi'
 import { ToastContainer, toast } from 'react-toastify';
+import { useHistory } from "react-router-dom";
 
 let userInfoDefault = {
     phone: '',
@@ -28,6 +29,7 @@ const toastOption = {
 }
 const AddLead = (props) => {
     const {token} = props;
+    let history = useHistory();
     const [addInfo,setAddInfo] = useState({...userInfoDefault});
     const [error,setError] = useState({...userInfoDefault});
     const handleInput = (name,value)=>{
@@ -90,10 +92,12 @@ const AddLead = (props) => {
             CreateLeadApi.createLead(token,addInfo?.phone,addInfo?.shopName, addInfo?.address, addInfo?.email,addInfo?.quantity,addInfo?.revenue,addInfo?.note,
                 result=>{
                     showToastSuccess("Tạo khách hàng thành công")
+                    history.push('/add-lead-success')
                     clearAllInput();
                 },
                 err=>{
                     showToastError(err)
+                    history.push('/add-lead-failed')
                 })
         }
         

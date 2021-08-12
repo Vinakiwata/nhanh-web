@@ -4,7 +4,7 @@ import Images from '../../common/Images'
 
 const ItemInfoCheckLead = ({isNew, label, isVerification, isSetting,approvalState, onPress}) => {
     return(
-        <button className="itemInfoCheckLeadContainer">
+        <button onClick={onPress} className="itemInfoCheckLeadContainer">
             {
                 isNew? 
                 <div className="highlightSpace">
@@ -18,6 +18,15 @@ const ItemInfoCheckLead = ({isNew, label, isVerification, isSetting,approvalStat
             <img className="styleIcon" src={approvalState===1?Images.icCheckboxOrange:approvalState===2?Images.icCheckboxOrange:Images.icCheckboxFlightBlue}/>
         </button>
     )
+}
+
+ItemInfoCheckLead.defaultProps = {
+    label: '',
+    isNew: false,
+    isVerification: false,
+    onPress: ()=>{},
+    isSetting: false,
+    approvalState: 0
 }
 
 export default ItemInfoCheckLead;

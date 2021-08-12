@@ -124,4 +124,39 @@
         flex-direction: row;
         align-items: center;
     }
+
+    .groupButton {
+        height: 160px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #F2F7F9 100%);
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 20px;
+    }
+    .btnClose{
+        // height: 60px;
+        // width: 60px;
+        background-color: #00476F;
+        border-radius: 30px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        padding: 11px 23px;
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+    .txtBtnClose{
+        font-family: Google Sans;
+        font-size: 14px;
+        line-height: 138.19%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #FFFFFF;
+    }
 }

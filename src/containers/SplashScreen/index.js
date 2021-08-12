@@ -23,7 +23,7 @@ const  SplashScreen = (props) => {
                     let token = data[0].access_token;
                     setVarAuth('token',token);
                     getUserInfo(token);
-                    history.push("/");
+                    history.push("/add-lead");
                 }
                 else {
                     window.location.href = Constants.GHN.AUTHEN_URL

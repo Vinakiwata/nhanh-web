@@ -41,6 +41,12 @@ const EditLeadInfo = (props) => {
     const {token} = props;
     const [addInfo,setAddInfo] = useState({...userInfoDefault});
     const [error,setError] = useState({...userInfoError});
+    const navigateProcessPage = () => {
+        history.push('/process')
+    }
+    const closePage = ()=> {
+        history.goBack()
+    }
     const handleInput = (name,value)=>{
         setAddInfo({...addInfo,[name]:value})
         handleCheckValid(name,value)
@@ -75,11 +81,11 @@ const EditLeadInfo = (props) => {
                     <img src={Images.icVerifyUserOrange}/>
                     <div className="txtCheckInfo">Đã xác minh</div>
                 </div>
-                <div style={{marginLeft:7}} className="groupCheckInfo">
-                    <img src={Images.icPolicyOrange}/>
-                    <div className="txtCheckInfo">Đã duyệt ch.sách</div>
+                <div style={{marginLeft:7, borderColor:'#00476F'}} className="groupCheckInfo">
+                    <img src={Images.icPolicyFlightBlue}/>
+                    <div style={{color:'#00476F'}} className="txtCheckInfo">Chưa duyệt ch.sách</div>
                 </div>
-                <div className="groupViewProcess">
+                <div onClick={navigateProcessPage} className="groupViewProcess">
                     <div className="txtWiewProcess">Xem q.trình</div>
                     <img src={Images.icViewLogBlue}/>
                 </div>
@@ -154,6 +160,15 @@ const EditLeadInfo = (props) => {
                         <div className="txtInfoText2">Chịu phí chuyển khoản COD</div>
                     </div>
                 </div>
+            </div>
+            <div className="groupButton">
+                <button onClick={closePage} type="button" className="btnClose">
+                    <img src={Images.icBackWhite} alt=""/>
+                    <div className="txtBtnClose">CẬP NHẬT VÀ THOÁT</div>
+                </button>
+                <button style={{backgroundColor:'#F26522', marginLeft:10}} onClick={closePage} type="button" className="btnClose">
+                    <div className="txtBtnClose">TẠO YÊU CẦU CÀI CHÍCH SÁCH</div>
+                </button>
             </div>
         </div>
     )

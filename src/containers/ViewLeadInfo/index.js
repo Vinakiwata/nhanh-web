@@ -14,12 +14,18 @@ const customStyles = {
   };
 const ViewLeadInfo = () => {
     let history = useHistory();
+    const closePage = ()=> {
+        history.goBack()
+    }
     const [modalIsOpen, setIsOpen] = useState(false);
     const openModal = () => {
         setIsOpen(true);
     }
     const closeModal = () => {
         setIsOpen(false);
+    }
+    const navigateProcessPage = () => {
+        history.push('/process')
     }
     return (
         <div className="ViewLeadInfoContainer">
@@ -33,7 +39,7 @@ const ViewLeadInfo = () => {
                     <img src={Images.icPolicyOrange}/>
                     <div className="txtCheckInfo">Đã duyệt ch.sách</div>
                 </div>
-                <div className="groupViewProcess">
+                <div onClick={navigateProcessPage} className="groupViewProcess">
                     <div className="txtWiewProcess">Xem q.trình</div>
                     <img src={Images.icViewLogBlue}/>
                 </div>
@@ -133,6 +139,11 @@ const ViewLeadInfo = () => {
             <div className="txtInfoGeneral">Thông tin xác minh</div>
             <div className="groupLocation">
 
+            </div>
+            <div className="groupButton">
+                <button onClick={closePage} type="button" className="btnClose">
+                <img src={Images.icClose} alt=""/>
+                </button>
             </div>
             <Modal
                 isOpen={modalIsOpen}

@@ -18,6 +18,9 @@ import icPenCilBlue from '../images/ic_pencil_blue.png'
 import icIncreaseGreen from '../images/ic_increase_green.png'
 import icCoinInfoBlue from '../images/ic_coin_info_blue.png'
 import icDoubleDownOrange from '../images/ic_double_down_orange.png'
+import icBackWhite from '../images/ic_back_white.png'
+import faceSuccess from '../images/face_success.png'
+import faceFailed from '../images/face_failed.png'
 
 const Images = {
     icClose,
@@ -39,7 +42,10 @@ const Images = {
     icPenCilBlue,
     icIncreaseGreen,
     icCoinInfoBlue,
-    icDoubleDownOrange
+    icDoubleDownOrange,
+    icBackWhite,
+    faceSuccess,
+    faceFailed
 }
 
 export default Images;

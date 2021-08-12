@@ -31,6 +31,15 @@ const ManagerLead = (props) => {
     const {dataFilter} = props;
     let history = useHistory();
     const [currentTab, setCurrentTab] = useState(0);
+    const handleNavigateView = (item) => {
+        if (item?.approvalState === 0) {
+            history.push('/edit-lead')
+        }
+        else {
+            history.push('/lead-info')
+        }
+        
+      }
     return(<div className="managerContainer">
         <div className="txtStatistic">Thống kê - Tính đến Thứ 6, 24/06/2021</div>
         <div className="pageTab">
@@ -45,7 +54,7 @@ const ManagerLead = (props) => {
             > 
                 <div> 
                     {
-                        dataTempt.map((item,index)=><ItemInfoCheckLead key={index} label={item?.label} isNew={item?.isNew} isVerification={item?.isVerification} isSetting={item?.isSetting} approvalState={item?.approvalState}/>)
+                        dataTempt.map((item,index)=><ItemInfoCheckLead onPress={()=>handleNavigateView(item)} key={index} label={item?.label} isNew={item?.isNew} isVerification={item?.isVerification} isSetting={item?.isSetting} approvalState={item?.approvalState}/>)
                     }
                 </div> 
                 <div> 
