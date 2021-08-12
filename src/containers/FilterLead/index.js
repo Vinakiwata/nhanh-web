@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import './styles.scss'
 import EnhancedInput from '../../components/InputEnhanced'
 import Images from '../../common/Images'
-import { useHistory } from "react-router-dom";
+import {setVarLead} from '../../redux/actions/managerLeadAction'
 
 let dataOption = [
     {label: 'Tất cả', value: 6},
@@ -13,15 +15,16 @@ let dataOption = [
     {label: '#Filter', value: 4},
     {label: '#Filter', value: 5},
   ]
-let dataFilter = {
+let dataFilterTempt = {
     msnv:'',
     affID: '',
-    source: ''
+    source: 'Tất cả'
 }
-const FilterLead = () => {
+const FilterLead = (props) => {
     let history = useHistory();
+    const {setVarLead, dataFilter} = props;
     const [openOption, setOpenOption] = useState(false);
-    const [listFilter,setListFilter] = useState(dataFilter)
+    const [listFilter,setListFilter] = useState(dataFilterTempt)
     const handleShowSlected = () => {
         setOpenOption(!openOption)
     }
@@ -31,6 +34,12 @@ const FilterLead = () => {
     const handleSelectOption = (item) => {
         setOpenOption(!openOption)
         setListFilter({...listFilter,'source':item?.label??''})
+    }
+    const handleSetFilter = (value) => {
+        setVarLead('dataFilter',value)
+        if(!value){
+            setListFilter({...dataFilterTempt})
+        }
     }
     const selectOption = () => {
         return (
@@ -64,10 +73,10 @@ const FilterLead = () => {
             <button onClick={()=>history.goBack()} type="button" className="btnClose">
             <img src={Images.icClose} alt=""/>
             </button>
-            <button type="button" className="btnAction">
+            <button type="button" onClick={()=>handleSetFilter(null)} className="btnAction">
                 <div className="txtLabelBtn">XOÁ HẾT</div>
             </button>
-            <button type="button" className="btnAction">
+            <button type="button" onClick={()=>handleSetFilter(listFilter)} className="btnAction">
                 <div className="txtLabelBtn">ÁP DỤNG BỘ LỌC</div>
             </button>
         </div>
@@ -75,4 +84,19 @@ const FilterLead = () => {
     )
 }
 
-export default FilterLead;
+// export default FilterLead;
+const mapStateToProps = (state) => {
+    return {
+        token: state.auth.token,
+        dataFilter: state.lead.dataFilter
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setVarLead: (key,value) => dispatch(setVarLead(key,value))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (FilterLead)

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './styles.scss';
 import Tabs from "../../components/Tabs"; 
 import _ from 'lodash'
+import { connect } from 'react-redux';
 import ItemInfoCheckLead from '../../components/ItemInfoCheckLead'
 import Images from '../../common/Images'
 import { useHistory } from "react-router-dom";
@@ -27,6 +28,7 @@ let dataTempt = [
   ]
 
 const ManagerLead = (props) => {
+    const {dataFilter} = props;
     let history = useHistory();
     const [currentTab, setCurrentTab] = useState(0);
     return(<div className="managerContainer">
@@ -59,15 +61,39 @@ const ManagerLead = (props) => {
             </Tabs> 
         </div>
         <div className="groupButton">
+            {dataFilter?
+            <button onClick={()=>history.push('/filter-lead')} type="button" className="btnFilter">
+                <img src={Images.icFilterOrange} alt=""/>
+                <span style={{color:'#F26522'}} className="txtFilter">Lọc </span>
+                <div className="optionFilter">{(dataFilter?.msnv==='')?`Tất cả nhân viên`:`Nhân viên: ${dataFilter?.msnv}`}</div>
+                {(dataFilter?.affID!=='')&&<div className="optionFilter">{`AFFID: ${dataFilter?.affID}`}</div>}
+                <div className="optionFilter">{(dataFilter?.source==='Tất cả')?`Tất cả nguồn`:dataFilter?.source}</div>
+            </button>:
             <button onClick={()=>history.push('/filter-lead')} type="button" className="btnFilter">
                 <img src={Images.icNoneFilterBlue} alt=""/>
                 <span className="txtFilter">Lọc : Hiện tất cả</span>
             </button>
+            }
+            
         </div>
     </div>)
 }
 
-export default ManagerLead;
+// export default ManagerLead;
+const mapStateToProps = (state) => {
+    return {
+        token: state.auth.token,
+        dataFilter: state.lead.dataFilter
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (ManagerLead)
 
 
 let dataTempt2 = [
