@@ -7,6 +7,7 @@ import _ from 'lodash'
 import {checkPhoneValid,validateEmail} from '../../utils/CheckValid'
 import CreateLeadApi from '../../redux/api/CreateLeadApi'
 import { ToastContainer, toast } from 'react-toastify';
+import { useHistory } from "react-router-dom";
 
 let userInfoDefault = {
     phone: '0363225277',
@@ -36,6 +37,7 @@ const toastOption = {
     progress: undefined,
 }
 const EditLeadInfo = (props) => {
+    let history = useHistory();
     const {token} = props;
     const [addInfo,setAddInfo] = useState({...userInfoDefault});
     const [error,setError] = useState({...userInfoError});

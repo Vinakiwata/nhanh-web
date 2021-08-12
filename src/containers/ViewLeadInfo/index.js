@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './styles.scss'
 import Images from '../../common/Images'
 import Modal from 'react-modal';
+import { useHistory } from "react-router-dom";
 
 const customStyles = {
     content: {
@@ -12,6 +13,7 @@ const customStyles = {
     },
   };
 const ViewLeadInfo = () => {
+    let history = useHistory();
     const [modalIsOpen, setIsOpen] = useState(false);
     const openModal = () => {
         setIsOpen(true);
